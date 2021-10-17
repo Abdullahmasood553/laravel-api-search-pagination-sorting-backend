@@ -16,4 +16,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('products/frontend', [ProductController::class, 'frontend']);
-Route::get('products/backend', [ProductController::class, 'backend']);
+Route::get('products/search_product', [ProductController::class, 'searchProduct']);
