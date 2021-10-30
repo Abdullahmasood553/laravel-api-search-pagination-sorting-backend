@@ -20,7 +20,7 @@ class ProductController extends Controller
             ->orWhereRaw("description LIKE '%". $data ."%'");
         }
          return $query->get();
-     
+
 
         // if($sort = $request->input('sort')) {
         //     $query->orderBy('price', $sort);
@@ -39,5 +39,33 @@ class ProductController extends Controller
         //     'page' => $page,
         //     'last_page' => ceil($total / $perPage)
         //  ];
+    }
+
+
+    public function insertMultipleProducts(Request $request) {
+        if($request->isMethod('post')) {
+            $data = $request->input();
+            foreach($data['products'] as $key => $value) {
+                $product = new Product;
+                $product->title         = $value['title'];
+                $product->description   = $value['description'];
+                $product->image         = $value['image'];
+                $product->price         = $value['price'];
+                $product->save();
+            }
+            return response()->json(['message' => 'Product Added Successfully']);
+        }
+    }
+
+    
+    public function fetchMultipleProducts(Request $request) {
+        if($request->isMethod('post')) {
+              $data = $request->input();
+                foreach($data as $key => $value) {      
+                    $items = Product::select("id", "title",)->whereIn('id', $data['id'])->get();
+                }
+              $json_toArray = json_encode($items,true);
+              return $json_toArray;
+        }
     }
 }
