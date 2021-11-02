@@ -63,7 +63,7 @@ class ProductController extends Controller
         if($request->isMethod('post')) {
               $data = $request->input();
                 foreach($data as $key => $value) {      
-                    $items = Product::select("id", "title")->whereIn('id', $data['selected_categories'])->get();
+                    $items = Product::select("id", "title", "description", "price")->whereIn('id', $data['selected_categories'])->get();
                 }
               $json_toArray = json_encode($items,true);
               return $json_toArray;
