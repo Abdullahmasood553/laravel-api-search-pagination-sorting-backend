@@ -8,7 +8,8 @@ use App\Models\Product;
 class ProductController extends Controller
 {
     public function frontend() {
-        return Product::all();
+        $products =  Product::all();
+        return json_encode($products);
     }
 
 
@@ -62,7 +63,7 @@ class ProductController extends Controller
         if($request->isMethod('post')) {
               $data = $request->input();
                 foreach($data as $key => $value) {      
-                    $items = Product::select("id", "title",)->whereIn('id', $data['id'])->get();
+                    $items = Product::select("id", "title")->whereIn('id', $data['selected_categories'])->get();
                 }
               $json_toArray = json_encode($items,true);
               return $json_toArray;

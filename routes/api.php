@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('products/frontend', [ProductController::class, 'frontend']);
+Route::get('products', [ProductController::class, 'frontend']);
 Route::get('products/search_product', [ProductController::class, 'searchProduct']);
 
 Route::post('products/find_multiple_products', [ProductController::class, 'fetchMultipleProducts']);
