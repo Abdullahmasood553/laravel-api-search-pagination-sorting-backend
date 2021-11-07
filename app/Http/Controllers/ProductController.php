@@ -43,7 +43,7 @@ class ProductController extends Controller
     }
 
 
-    public function insertMultipleProducts(Request $request) {
+    public function addMultipleProducts(Request $request) {
         if($request->isMethod('post')) {
             $data = $request->input();
             foreach($data['products'] as $key => $value) {
