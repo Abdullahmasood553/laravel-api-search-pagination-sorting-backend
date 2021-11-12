@@ -9,7 +9,11 @@ class ProductController extends Controller
 {
     public function frontend() {
         $products =  Product::all();
-        return json_encode($products);
+        return response()->json([
+            'products' => $products,
+            "errorCode" => 200,
+            "errorMessage" => "Success"
+        ]); 
     }
 
 
