@@ -8,13 +8,25 @@ use App\Models\Product;
 class ProductController extends Controller
 {
     public function frontend() {
-        $products =  Product::all();
-        return response()->json([
-            'response' => [   
-            'products' => $products,
-            "errorCode" => 200,
-            "errorMessage" => "Success"]
-        ]); 
+        // $products =  Product::all();
+        // return json_encode($products);
+        
+        //  $age = array("Peter"=>35, "Ben"=>37, "Joe"=>43);
+        // echo json_encode($age);
+
+        //  return response()->json(array("products"=> $products), 200);
+        // return response()->json(["products" => $products], 200);
+        // return response()->json(["products" => $products, 'message' => 'Products', 'code' => 200]);
+
+
+        // return json_decode($products, true);
+
+        // return response()->json([
+        //     'response' => [   
+        //     'products' => $products,
+        //     "errorCode" => 200,
+        //     "errorMessage" => "Success"]
+        // ]); 
     }
 
 
@@ -67,6 +79,7 @@ class ProductController extends Controller
     public function fetchMultipleProducts(Request $request) {
         if($request->isMethod('post')) {
               $data = $request->input();
+             
                 foreach($data as $key => $value) {      
                     $items = Product::select("id", "title", "description", "price")->whereIn('id', $data['selected_categories'])->get();
                 }
