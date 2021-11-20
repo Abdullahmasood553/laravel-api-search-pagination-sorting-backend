@@ -82,7 +82,9 @@ class ProductController extends Controller
               $data = $request->input();
              
                 foreach($data as $key => $value) {      
-                    $items = Product::select("id", "title", "description", "price")->whereIn('id', $data['selected_categories'])->get();
+                    // $items = Product::select("id", "title", "description", "price")->whereIn('id', $data['selected_categories'])->get();
+                    $items = Product::join('product_sub_catagories', 'products.id', '=', 'product_sub_catagories.product_id')
+                    ->whereIn('products.id', $data['selected_categories'])->get(['product_sub_catagories.title', 'product_sub_catagories.description', 'product_sub_catagories.price']);
                 }
               $json_toArray = json_encode($items,true);
               return $json_toArray;
