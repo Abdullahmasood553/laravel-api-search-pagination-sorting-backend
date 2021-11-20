@@ -8,7 +8,8 @@ use App\Models\Product;
 class ProductController extends Controller
 {
     public function frontend() {
-        // $products =  Product::all();
+         $products =  Product::all();
+         return response()->json(["products" => $products, 'message' => 'Products', 'code' => 200]);
         // return json_encode($products);
         
         //  $age = array("Peter"=>35, "Ben"=>37, "Joe"=>43);
