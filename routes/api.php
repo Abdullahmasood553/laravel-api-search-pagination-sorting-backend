@@ -21,3 +21,6 @@ Route::get('products/search_product', [ProductController::class, 'searchProduct'
 Route::post('products/find_multiple_products', [ProductController::class, 'fetchMultipleProducts']);
 Route::post('products/add_multiple_products', [ProductController::class, 'addMultipleProducts']);
 
+
+Route::get('contacts', [App\Http\Controllers\ContactController::class, 'contacts']);
+
